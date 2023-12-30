@@ -2,11 +2,11 @@
 
 ### Directories for sub-modules
 test
-include/SeldonData/
-include/AtmoData/
-include/Talos/
-include/ssh-aerosol/
-include/atmopy/
+#include/SeldonData/
+#include/AtmoData/
+#include/Talos/
+#include/ssh-aerosol/
+#include/atmopy/
 
 ### Binaries
 *.o
@@ -52,18 +52,18 @@ config.log
 processing/*/results/*.bin
 
 ### Spack
-include/modules/chemistry/CB05/*.f*
-include/modules/chemistry/RACM/*.f*
-include/modules/chemistry/RACM2/*.f*
-include/modules/chemistry/*/species.spack.dat
-include/modules/chemistry/Leighton/*.f*
-include/modules/chemistry/MELCHIOR2/*.f*
-include/spack/src/LU_generator
-include/spack/src/find_perm
-include/spack/src/spack_generator
-include/spack/src/spack_input
-include/spack/src/.scons.log
-include/spack/src/mechanism/*
+#include/modules/chemistry/CB05/*.f*
+#include/modules/chemistry/RACM/*.f*
+#include/modules/chemistry/RACM2/*.f*
+#include/modules/chemistry/*/species.spack.dat
+#include/modules/chemistry/Leighton/*.f*
+#include/modules/chemistry/MELCHIOR2/*.f*
+#include/spack/src/LU_generator
+#include/spack/src/find_perm
+#include/spack/src/spack_generator
+#include/spack/src/spack_input
+#include/spack/src/.scons.log
+#include/spack/src/mechanism/*
 
 
 ### Files in old version

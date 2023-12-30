@@ -107,6 +107,10 @@ content = [('indir', '[input]', 'String'),
            ("melch2molmass_file","[background]","String"), \
            # [background] - text file
            ('background_textfile', '[background]', 'String'),
+           # [background] - WRFChem
+           ("melch2molmass_file","[background]","String"), \               
+           ("GAS_Species","[background]","StringList"), \
+           ("AERO_Species","[background]","StringList"), \
            # [gridded_emission]
            ('generate_grid_emission', '[gridded_emission]', 'Bool'),
            ('grid_emis_outdir', '[gridded_emission]', 'String'),
@@ -320,7 +324,20 @@ if config.generate_bkgd:
                 molar_mass_melchior2[spec]=val
         f.close()
 
+    elif config.bkgd_type == 'wrfchem':
+        
+        wrf_gas_spec_list=config.GAS_Species
+        wrf_aero_spec_list=config.AERO_Species
 
+        molar_mass_melchior2={}
+
+        with open(config.melch2molmass_file,'r') as f:
+            for ln in f:
+                spec=ln.split()[0]
+                val=float(ln.split()[1])
+                molar_mass_melchior2[spec]=val
+        f.close()
+        
     else:
         sys.exit('ERROR: bkgd_type {} not valid.'.format(config.bkgd_type))
 
@@ -550,6 +567,12 @@ for t in range(nt):
                                                  melchior_spec_list, \
                                                  molar_mass_melchior2, \
                                                  chimere_dir,chimout_lab)            
+
+        elif config.bkgd_type == 'wrfchem':
+            get_wrfchem_background_concentration(current_date, street_list_eff, \
+                                                 wrf_gas_spec_list, \
+                                                 molar_mass_melchior2, \
+                                                 config.meteo_dir, config.wrf_config)            
 
 
         # Append data to output files

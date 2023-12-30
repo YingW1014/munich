@@ -6,6 +6,7 @@ from io_tools import *
 from misc import *
 from atmopy import talos
 from scipy.io import netcdf
+import netCDF4
 
     
 SB_constant = 5.67 * pow(10,-8) # (Stefan-Boltzmann constant)
@@ -311,7 +312,9 @@ def get_meteo_data(input_dir, ind_t_munich, delta_t,
                        config.wrfout_prefix,
                        config.option_lmo)
         
-        f = netcdf.netcdf_file(input_file, 'r')
+    #    f = netcdf.netcdf_file(input_file, 'r')
+        f = netCDF4.Dataset(input_file, 'r') # By YW
+
         
         lons = f.variables["XLONG"][0]
         lats = f.variables["XLAT"][0]
@@ -325,7 +328,8 @@ def get_meteo_data(input_dir, ind_t_munich, delta_t,
                        config.time_step_wrf,
                        config.option_lmo)
 
-        f = netcdf.netcdf_file(input_file, 'r')
+    #    f = netcdf.netcdf_file(input_file, 'r')
+        f = netCDF4.Dataset(input_file, 'r') # By YW
 
         lons = f.variables["XLONG"]
         lats = f.variables["XLAT"]
