@@ -83,6 +83,7 @@ def list_profile(env):
         if s == 0:
             compiler = o.split()[0]
 
+    compiler = compiler.decode('utf-8') # By YW, for Intel compiler
     compiler_alias = [compiler]
 
     # Strips the version suffix.
